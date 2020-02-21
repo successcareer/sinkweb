@@ -1,0 +1,55 @@
+<div id="dashboard" class="page-layout carded fullwidth inner-scroll">
+    
+    <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center">
+        <div class="logo mb-24 mb-md-0 title-content" fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                dashboard
+            </mat-icon>
+            <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+            {{ 'DASHBOARD' | translate }}
+            </span>
+        </div>
+        <div fxLayout="row" class="search-wrapper" class="mb-md-0" > 
+            <form name="dateForm" [formGroup]="dateForm" fxLayout="column">
+                <div fxLayout="column" fxLayout.gt-sm="row">
+                    <mat-form-field appearance="outline" class="pr-sm-8 pt-sm-8" fxFlex="50">
+                        <mat-label>{{'STARTDATE' | translate}}</mat-label>
+                        <input matInput [matDatepicker]="startDatePicker" name="start" formControlName="start">
+                        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #startDatePicker></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="pr-sm-8 mt-24" fxFlex="50">
+                        <mat-label>{{'ENDDATE' | translate}}</mat-label>
+                        <input matInput [matDatepicker]="endDatePicker" name="end" formControlName="end">
+                        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #endDatePicker></mat-datepicker>
+                    </mat-form-field>
+                    <button mat-raised-button color="warn" (click)="filter()" class="add-product-button mt-24 mt-md-0">
+                        <span>{{ 'FILTER' | translate }}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="fuse-card auto-width">
+
+        <div class="position-relative p-24"
+                fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxLayout="column" fxLayoutAlign="start start">
+                <span class="h2">{{ 'SINKAMOUNT' | translate }}</span>
+            </div>
+        </div>
+
+        <div class="position-relative h-368 pb-16">
+            <canvas baseChart
+                    [datasets]="dataSource.datasets['chart']"
+                    [labels]="dataSource.labels"
+                    [colors]="dataSource.colors"
+                    [options]="dataSource.options"
+                    [chartType]="dataSource.chartType">
+            </canvas>
+        </div>
+    </div>
+
+</div>

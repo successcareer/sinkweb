@@ -1,0 +1,65 @@
+<div id="servies" class="page-layout carded fullwidth inner-scroll">
+    <div class="top-bg accent"></div>
+    <div class="center">
+        <div class="header accent" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center">
+            <div class="logo" fxLayout="row" fxLayoutAlign="start center">
+               <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    settings
+               </mat-icon>
+               <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                {{ 'SERVICE' | translate }}
+               </span>
+            </div>
+            <button mat-raised-button
+                    [routerLink]="'/service/new'"
+                    class="add-product-button fuse-white mt-24 mt-md-0">
+                <span>{{ 'ADDBUTTON' | translate }}</span>
+            </button>
+        </div>
+        <div class="content-card">
+            <mat-table class="products-table"
+                #table [dataSource]="dataSource"
+                matSort
+                [@animateStagger]="{value:'50'}"
+                fusePerfectScrollbar>
+                <ng-container matColumnDef="Name">
+                    <mat-header-cell *matHeaderCellDef>{{ 'NAME' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let data">
+                        <p class="text-truncate">{{data.name}}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Price">
+                    <mat-header-cell *matHeaderCellDef>{{ 'PRICE' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let data">
+                        <p class="text-truncate">{{data.price}}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Action">
+                    <mat-header-cell  *matHeaderCellDef > {{'ACTION' | translate}} </mat-header-cell>
+                    <mat-cell *matCellDef="let data" >
+                        <button mat-raised-button (click)="deleteService(data._id)" color="warn" fxHide fxShow.gt-lg>{{'DELETE' | translate}}</button>
+                        <button mat-icon-button (click)="deleteService(data._id)" color="warn" fxShow fxHide.gt-lg>
+                            <mat-icon>delete icon</mat-icon>
+                        </button>
+                        <button mat-raised-button [routerLink]="'/service/' + data._id" color="primary" fxHide fxShow.gt-lg>{{'EDIT' | translate}}</button>
+                        <button mat-icon-button [routerLink]="'/service/' + data._id" color="primary" fxShow fxHide.gt-lg>
+                            <mat-icon>edit icon</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+                <mat-row *matRowDef="let data; columns: displayedColumns;"
+                        class="product"
+                        matRipple>
+                </mat-row>
+            </mat-table>
+            <mat-paginator #paginator
+                [length]="datalength"
+                [pageIndex]="0"
+                [pageSize]="10"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                (page)="getDataSource()">
+            </mat-paginator>
+        </div>
+    </div>
+</div>

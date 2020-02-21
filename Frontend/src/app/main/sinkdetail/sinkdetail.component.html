@@ -1,0 +1,87 @@
+<div id="sinkdetail" class="page-layout carded fullwidth inner-scroll">
+    <div class="top-bg accent"></div>
+    <div class="center">
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/sink'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+                <div fxLayout="column" fxLayoutAlign="start start"
+                        [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="pageType ==='edit'">
+                        {{sinkDetail.carnumber}}
+                    </div>
+                    <div class="h2" *ngIf="pageType ==='new'">
+                        {{ 'NEWSERVICE' | translate }}
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+            <button mat-raised-button
+                    class="save-product-button"
+                    [disabled]="sinkForm.invalid"
+                    *ngIf="pageType ==='new'" (click)="addSink()">
+                <span>{{'ADD' | translate}}</span>
+            </button>
+
+            <button mat-raised-button
+                    class="save-product-button"
+                    [disabled]="sinkForm.invalid || sinkForm.pristine"
+                    *ngIf="pageType ==='edit'" (click)="saveSink()">
+                <span>{{'SAVE' | translate}}</span>
+            </button>
+        </div>
+        <div class="content-card">
+            <div class="content">
+                <form name="sinkForm" [formGroup]="sinkForm" class="product w-100-p" fxLayout="column" fxFlex>
+                    <div class="tab-content p-24" fusePerfectScrollbar>
+                        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                            <mat-label>{{ 'CARNUMBER' | translate }}</mat-label>
+                            <input matInput placeholder="{{ 'CARNUMBER' | translate }}"
+                                    name="carnumber"
+                                    formControlName="carnumber"
+                                    required>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                            <mat-label>{{ 'CARMAKE' | translate }}</mat-label>
+                            <mat-select [(ngModel)]="selectedMake"
+                                (selectionChange)="changeMake()"
+                                placeholder="{{ 'CARMAKE' | translate }}"
+                                formControlName="carmake" required>
+                                <mat-option *ngFor="let make of makes" [value]="make._id" checked>{{make.make}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                            <mat-label>{{ 'CARMODEL' | translate }}</mat-label>
+                            <mat-select [(ngModel)]="selectedModel"
+                                formControlName="carmodel" required>
+                                <mat-option *ngFor="let model of models" [value]="model._id" checked>{{model.model}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                            <mat-label>{{ 'BOXNUMBER' | translate }}</mat-label>
+                            <input matInput placeholder="{{ 'BOXNUMBER' | translate }}"
+                                        name="boxnumber"
+                                        formControlName="boxnumber"
+                                        required>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                            <mat-label>{{ 'SERVICES' | translate }}</mat-label>
+                            <mat-select multiple [(ngModel)]="selectedServices"
+                                formControlName="services" required>
+                                <mat-option *ngFor="let service of services" [value]="service._id" checked>{{service.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

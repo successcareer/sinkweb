@@ -1,0 +1,64 @@
+<div id="servicedetail" class="page-layout carded fullwidth inner-scroll">
+    <div class="top-bg accent"></div>
+    <div class="center">
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/service'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div fxLayout="column" fxLayoutAlign="start start"
+                        [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="pageType ==='edit'">
+                        {{serviceDetail.name}}
+                    </div>
+                    <div class="h2" *ngIf="pageType ==='new'">
+                        {{ 'NEWSERVICE' | translate }}
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+            <button mat-raised-button
+                    class="save-product-button"
+                    [disabled]="serviceForm.invalid"
+                    *ngIf="pageType ==='new'" (click)="addService()">
+                <span>{{'ADD' | translate}}</span>
+            </button>
+
+            <button mat-raised-button
+                    class="save-product-button"
+                    [disabled]="serviceForm.invalid || serviceForm.pristine"
+                    *ngIf="pageType ==='edit'" (click)="saveService()">
+                <span>{{'SAVE' | translate}}</span>
+            </button>
+        </div>
+        <div class="content-card">
+            <div class="content">
+                <form name="serviceForm" [formGroup]="serviceForm" class="product w-100-p" fxLayout="column" fxFlex>
+                        <div class="tab-content p-24" fusePerfectScrollbar>
+                            <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                <mat-label>{{ 'SERVICENAME' | translate }}</mat-label>
+                                <input matInput placeholder="{{ 'SERVICENAME' | translate }}"
+                                        name="name"
+                                        formControlName="name"
+                                        required>
+                            </mat-form-field>
+    
+                            <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                <mat-label>{{ 'SERVICEPRICE' | translate }}</mat-label>
+                                <input matInput placeholder="{{ 'SERVICEPRICE' | translate }}"
+                                            name="price"
+                                            formControlName="price"
+                                            type="number"
+                                            required>
+                            </mat-form-field>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
