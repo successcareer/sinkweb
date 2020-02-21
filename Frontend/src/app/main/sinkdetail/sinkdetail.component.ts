@@ -15,7 +15,7 @@ import { ServiceDetail } from '../servicedetail/service.model';
 import {ConfirmationDialog} from '../confirmdialog/confirmdialog.component';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-
+import { Router } from '@angular/router';
 @Component({
     selector: 'sinkdetail',
     templateUrl: './sinkdetail.component.html',
@@ -47,7 +47,8 @@ export class SinkDetailComponent implements OnInit, OnDestroy
         private sinkService: SinkService,
         private route: ActivatedRoute,
         private dialog: MatDialog,
-        private _translateService: TranslateService
+        private _translateService: TranslateService,
+        private router: Router
     )
     {
         this._fuseTranslationLoaderService.loadTranslations(english, russian);
@@ -118,7 +119,7 @@ export class SinkDetailComponent implements OnInit, OnDestroy
         }
         data.services = array
         this.sinkService.add(data).then(response => {
-            window.location.href = '/sink'
+            this.router.navigateByUrl('/sink')
         })
     }
 
@@ -172,7 +173,7 @@ export class SinkDetailComponent implements OnInit, OnDestroy
                 }
                 data.services = array
                 this.sinkService.update(data).then(response => {
-                    window.location.href = '/sink'
+                    this.router.navigateByUrl('/sink')
                 })
             }
         });

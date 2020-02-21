@@ -16,14 +16,14 @@ sink {
             > .header {
 
                 .search-wrapper {
-                    width: 100%;
-                    max-width: 480px;
-                    border-radius: 28px;
                     overflow: hidden;
-                    @include mat-elevation(1);
 
                     @include media-breakpoint('xs') {
-                        width: 100%;
+                        width: 95%;
+                    }
+
+                    @include media-breakpoint('sm') {
+                        width: 95%;
                     }
 
                     .search {
@@ -44,18 +44,65 @@ sink {
                     }
                 }
 
+                .mat-form-field-wrapper {
+                    padding-bottom: 0;
+                }
+                
+                .filter_button {
+                    height: 50px;
+                    min-width: 100px;
+                    width: 50%;
+                    margin: 0 8px 0 0;
+                    @media all and (min-width: 960px) {
+                        margin-right: 10px;
+                    }
+                }
+
                 @include media-breakpoint('lt-md') {
                     padding: 8px 0;
-                    height: 192px !important;
-                    min-height: 192px !important;
-                    max-height: 192px !important;
                 }
             }
-        }
 
-        .custom-button {
-            margin-top: 15px !important;
+            .products-table {
+                display: block;
+                @include media-breakpoint('lt-md') {
+                    display: none;
+                }
+            }
+
+            .products-table-mob {
+                display: none;
+                width: 100%;
+                @include media-breakpoint('lt-md') {
+                    display: inline-block;
+                }
+
+                .products-table-one {
+                    width: 100%;
+                    border: 1px solid #333;
+                    clear: both;
+                    display: inline-block;
+                    .row {
+                        width: 100%;
+                        border-bottom: 1px solid #333;
+                        display: flex;
+                        .title-panel {
+                            width: 40%;
+                            float: left;
+                            padding: 10px;
+                        }
+        
+                        .content-panel {
+                            width: 60%;
+                            float: left;
+                            padding: 10px;
+                            border-left: 1px solid #333;
+                            background-color: #fff;
+                        }
+                    }
+                    
+                }
+            }        
         }
     }
-
 }

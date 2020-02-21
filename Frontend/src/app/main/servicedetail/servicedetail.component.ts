@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 import {ConfirmationDialog} from '../confirmdialog/confirmdialog.component';
 import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'servicedetail',
@@ -40,6 +41,7 @@ export class ServiceDetailComponent implements OnInit, OnDestroy
         private route: ActivatedRoute,
         private dialog: MatDialog,
         private _translateService: TranslateService,
+        private router: Router
     )
     {
         this._fuseTranslationLoaderService.loadTranslations(english, russian);
@@ -71,7 +73,7 @@ export class ServiceDetailComponent implements OnInit, OnDestroy
     addService() {
         const data = this.serviceForm.getRawValue();
         this.settingService.add(data).then(response => {
-            window.location.href = '/service'
+            this.router.navigateByUrl('/service')
         })
     }
 
@@ -103,7 +105,7 @@ export class ServiceDetailComponent implements OnInit, OnDestroy
                 const data = this.serviceForm.getRawValue();
                 data._id = this._id
                 this.settingService.update(data).then(response => {
-                    window.location.href = '/service'
+                    this.router.navigateByUrl('/service')
                 })
             }
         });

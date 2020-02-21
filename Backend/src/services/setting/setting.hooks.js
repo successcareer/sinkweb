@@ -15,7 +15,7 @@ module.exports = {
     all: [],
     find: [
       async context => {
-        let count = await context.service.options.Model.count({})
+        let count = await context.service.options.Model.estimatedDocumentCount({})
         context.result.length = count
       }
     ],
