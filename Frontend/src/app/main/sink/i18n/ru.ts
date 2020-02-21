@@ -9,7 +9,7 @@ export const locale = {
         'BOXNUMBER': 'Номер Бокса',
         'SERVICES': 'Сервис',
         'ENDDATE': 'Дата закончания',
-        'STARTDATE': 'Дата начала',
+        'STARTDATE': 'Дата Конца',
         'SEARCH': 'Поиск',
         'ACTION': 'Действие',
         'DELETE': 'Удалить',

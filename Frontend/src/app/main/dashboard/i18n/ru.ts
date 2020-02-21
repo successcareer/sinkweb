@@ -3,7 +3,7 @@ export const locale = {
     data: {
         'DASHBOARD' : 'Дашборд',
         'STARTDATE': 'Дата начала',
-        'ENDDATE': 'Дата закончания',
+        'ENDDATE': 'Дата Конца',
         'FILTER': 'Филтр',
         'SINKAMOUNT': 'Сумма Моек'
     }
