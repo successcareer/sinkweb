@@ -6,7 +6,7 @@ import * as io from 'socket.io-client'
 @Injectable()
 export class Feathers {
     private _feathers = feathers();
-    private _socket = io('http://192.168.88.27:3030');
+    private _socket = io('http://localhost:3030');
     constructor() {
         this._feathers.configure(feathersSocketIOClient(this._socket))
         .configure(feathersRx({ 
