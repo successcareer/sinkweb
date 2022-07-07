@@ -44,7 +44,7 @@
     "cors": "^2.8.5",
     "feathers-mongoose": "^8.3.0",
     "helmet": "^3.21.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "mongodb-core": "^3.2.7",
     "mongoose": "^5.8.13",
     "serve-favicon": "^2.5.0",
